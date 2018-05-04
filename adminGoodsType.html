@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>类别管理</title>
+    		<link rel="import" href="admin_header.html">
+	</head>
+	<body class = "layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div id="header"></div>
+				<div class="layui-body">
+	            <div style="padding: 15px;">
+	                <div class="demoTable">
+	                   类别搜索：
+	                    <div class="layui-inline">
+	                        <input class="layui-input" id="uid" autocomplete="off">
+	                    </div>
+	                    <button class="layui-btn" data-type="reload">搜索</button>
+	                    <button class="layui-btn" data-type="delete">删除所选记录</button>
+	                    <button class="layui-btn" data-type="create">发布类别</button>
+	                </div>
+	            </div>
+	            <table class="layui-hide" id="LAY_table_good" lay-filter="good"></table>
+	            <script type="text/html" id="switchTpl">
+	                <input type="checkbox" name="hot" value="{{d.id}}" lay-skin="switch" lay-text="Y|N" lay-filter="hot" {{ d.hot == 1 ? 'checked' : '' }}>
+	            </script>
+	            <script type="text/html" id="switchTp2">
+	                <input type="checkbox" name="discount" value="{{d.id}}" lay-skin="switch" lay-text="Y|N" lay-filter="discount" {{ d.discount == 1 ? 'checked' : '' }}>
+	            </script>
+	            <script type="text/html" id="bar">
+	                <a class="layui-btn layui-btn-xs" lay-event="detail">配图</a>
+	                <a class="layui-btn layui-btn-xs" lay-event="comment">评价</a>
+	            </script>
+	        </div>
+	         <div class="layui-footer">
+					购了商城后台
+	         </div>
+		</div>
+		<script src="./js/adminGoodsType.js"></script>
+	</body>
+</html>

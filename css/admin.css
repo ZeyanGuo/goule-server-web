@@ -1,0 +1,8 @@
+.p-name{
+	display: inline-block;
+	width: 100px;
+	text-align: right;	
+}
+.input-margin-left{
+	margin-left: 20px;
+}

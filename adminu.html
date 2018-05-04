@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>强哥户外,用户管理</title>
+    <link rel="import" href="admin_header.html">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div id="header"></div>
+    <div class="layui-body">
+        <div style="padding: 15px;">
+            <div class="demoTable">
+                用户检索：
+                <div class="layui-inline">
+                    <input class="layui-input" id="uid" autocomplete="off">
+                </div>
+                <button class="layui-btn" data-type="reload">搜索</button>
+            </div>
+        </div>
+        <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table>
+    </div>
+    <div class="layui-footer">
+        强哥户外--户外用品门户网站--联系方式627901633@qq.com
+    </div>
+</div>
+<script src="./js/adminu.js"></script>
+</body>
+</html>

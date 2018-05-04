@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./layui/layui.all.js"></script>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+    <script src="./js/base.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="layui-header">
+        <div class="layui-logo">
+            <a href="admin.html">
+                <img width="150px" src="img/logo.png" alt="layui">
+            </a>
+        </div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+        		<li class="layui-nav-item"><a href="adminTypesPage.html">类别管理</a></li>
+            <li class="layui-nav-item"><a href="./admin.html">商品管理</a></li>
+            <li class="layui-nav-item"><a href="./adminu.html">用户管理</a></li>
+            <li class="layui-nav-item"><a href="./admino.html">订单管理</a></li>
+            <li class="layui-nav-item"><a href="./adminr.html">评论管理</a></li>
+            <li class="layui-nav-item"><a href="./admingp.html">配图管理</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item"><a href="adminLogin.html">登出</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="submenu">
+            		<li class="layui-nav-item"><a href="adminTypesPage.html">类别管理</a></li>
+                <li class="layui-nav-item"><a href="./admin.html">商品管理</a></li>
+                <li class="layui-nav-item"><a href="./adminu.html">用户管理</a></li>
+                <li class="layui-nav-item"><a href="./admino.html">订单管理</a></li>
+                <li class="layui-nav-item"><a href="./adminr.html">评论管理</a></li>
+                <li class="layui-nav-item"><a href="./admingp.html">配图管理</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    var importDoc = document.currentScript.ownerDocument;
+    var mainDoc = document;
+    var el = importDoc.getElementById("header");
+    //mainDoc.body.appendChild(el.cloneNode(true));
+    var el2 = mainDoc.getElementById("header");
+    el2.innerHTML = el.innerHTML;
+    //设置登出选项
+    var logout = mainDoc.getElementById("logout");
+    if (logout) {
+        logout.onclick = function (ev) {
+            delCookieAll();
+            location.href = "./admin_login.html"
+        };
+    }
+</script>
+</body>
+</html>

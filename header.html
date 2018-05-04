@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./layui/layer.js"></script>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/base.js"></script>
+</head>
+<body>
+<div id="header">
+    <div class="row">
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-3">
+            <img src="./images/logo.png" height="150px">
+        </div><!-- /.col-lg-6 -->
+        <div class="col-lg-4" style="margin-top: 50px">
+            <div class="input-group">
+                <input type="text" id="sgood" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="search">搜索商品</button>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-4" style="margin-top: 55px;">
+            <div id="nou" style="display: block; font-size: 20px">
+                <div style="display: inline">
+                    <a href="login.html">用户登录</a>
+                </div>
+                <div style="display: inline; margin-left: 20px">
+                    <a href="register.html">用户注册</a>
+                </div>
+            </div>
+            <div id="user" style="font-size: 20px">
+                欢迎用户：
+                <div style="display: inline" id="name">强哥</div>
+                <div style="display: inline; text-underline: #090505; margin-left: 20px;" class="logout" id="logout">
+                    <style>.logout:hover{text-decoration:underline;}</style>
+                    登出
+                </div>
+            </div>
+            <div style="margin-top: 30px; font-weight: bold" id="time">
+                当前时间: 2017-04-09 10:32:12
+            </div>
+        </div>
+    </div><!-- /.row -->
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">商城首页</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="./hotgood.html">热销推荐</a></li>
+                    <li><a href="./discountgood.html">特价促销</a></li>
+                    <li><a href="./latest.html">最新上架</a></li>
+                    <li><a href="./user.html">个人中心</a></li>
+                    <li><a href="./about.html">关于我们</a></li>
+                    <li><a href="admin_login.html">管理员登录</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<script>
+    var importDoc = document.currentScript.ownerDocument;
+    var mainDoc = document;
+    //获取用户信息
+    var strUserInfo = getCookie("quser");
+    var userInfo = strUserInfo == "undefined" ? null : JSON.parse(strUserInfo);
+    if (userInfo) {
+        importDoc.getElementById("name").innerText = userInfo.name;
+        importDoc.getElementById("nou").style.display = "none";
+        importDoc.getElementById("user").style.display = "block";
+    } else {
+        importDoc.getElementById("user").style.display = "none";
+        importDoc.getElementById("nou").style.display = "block";
+        $("#logout").click(function(){
+            delCookieAll();
+            location.href="./logo.html";
+        });
+    }
+    var el = importDoc.getElementById("header");
+    //mainDoc.body.appendChild(el.cloneNode(true));
+    var el2 = mainDoc.getElementById("header");
+    el2.innerHTML = el.innerHTML;
+    el2 = el;
+    //设置登出选项
+    var logout = mainDoc.getElementById("logout");
+    logout.onclick = function (ev) {
+        delCookieAll();
+        location.href = "./login.html";
+    };
+    //设置搜索选项
+    var search = mainDoc.getElementById("search");
+    search.onclick = function (ev) {
+        var value = mainDoc.getElementById("sgood").value;
+        setCookie("name",value);
+        location.href = "./search.html";
+    };
+    //设置时间显示
+    setInterval(function(){
+        var time = getCurrentTime();
+        var strTime = mainDoc.getElementById("time");
+        strTime.innerText = "当前时间：" + time;
+    },1000);
+</script>
+</body>
+</html>
