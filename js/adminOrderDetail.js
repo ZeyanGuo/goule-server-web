@@ -87,7 +87,7 @@ function addGoodItem(obj){
 }
 
 function addOrderDetail(data){
-	var status,price = 0,cinvoice,
+	var status,price = 0,cinvoice,postId,
 		checkArray = {
 				'SF':'顺丰速运',
 				'HTKY':'百世快递',
@@ -139,7 +139,8 @@ function addOrderDetail(data){
 	else{
 		cinvoice = '是';
 	}
-	postType = checkArray[data.order.posttype];
+	postType = !!checkArray[data.order.posttype]?checkArray[data.order.posttype]:'';
+	postId = !!data.order.postid?data.order.postid:'';
 	
 	var html = ` <div class="order-info-value-container">
 								<p>订单编号：</p>
@@ -169,7 +170,7 @@ function addOrderDetail(data){
 							
 							<div class="order-info-value-container">
 								<p>物流单号：</p>
-								<p>${data.order.postid}</p>
+								<p>${postId}</p>
 							</div>`
 	return html;
 }

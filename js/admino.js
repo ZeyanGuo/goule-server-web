@@ -272,7 +272,8 @@ function updateLogistic(id){
 		layer.msg('请填入完整且正确物流信息');
 		return;
 	}
-	if(postInfo[id].postType == '' || postInfo[id].postId == ''){
+	
+	if(!postInfo[id].postType || !postInfo[id].postId){
 		layer.msg('请填入完整且正确物流信息');
 		return;
 	}
