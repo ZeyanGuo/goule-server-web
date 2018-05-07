@@ -2,26 +2,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>强哥户外,订单管理</title>
+    <title>购了商城,订单管理</title>
     <link rel="import" href="admin_header.html">
 </head>
+<style>
+	.layui-form{
+		margin-bottom: 0;
+	}
+	.layui-table-page{
+		border:1px solid #e6e6e6;
+		padding-bottom:7px ;
+		height: auto;
+		border-top: none;
+	 }
+	 .select-css + div{
+	 	position: absolute;
+	 	z-index: 20px;
+	 }
+</style>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div id="header"></div>
     <div class="layui-body">
         <div style="padding: 15px;">
-            <div class="demoTable">
+            <div class="demoTable layui-inline">
                 订单状态检索：
-                <div class="layui-inline">
-                    <input class="layui-input" id="uid" autocomplete="off" placeholder="请输入订单状态">
+                <div class="layui-inline layui-form">
+                		<select id = "orderType" lay-filter="orderType">
+                			<option value = "4">全部订单</option>
+                			<option value = "1">待发货</option>
+                			<option value = "2">已发货</option>
+                			<option value = "3">交易完成</option>
+                			<option value = "-1">订单取消</option>
+                		</select>
+                    	
                 </div>
-                <button class="layui-btn" data-type="reload">搜索</button>
+              
+            </div>
+            <div class="demoTable layui-inline" style="margin-left: 20px;" >
+                订单搜索：
+                <div class="layui-inline">
+                    <input class="layui-input" id="uid" autocomplete="off" placeholder="订单搜索(ID)">
+                </div>
+                <button class="layui-btn" id = "search" data-type="reload">搜索</button>
+               
             </div>
         </div>
-        <table class="layui-hide" id="LAY_table_order" lay-filter="order"></table>
+        <table class="layui-hide" id="LAY_table_order" lay-filter="order" style="margin: 0;padding: 0;"></table>
+        <div class="layui-table-page">
+        		<div id="layui-table-page1" >
+        			
+        		</div>
+        </div>
+        <script type="text/html" id="bar">
+            <a class="layui-btn layui-btn-xs" lay-event="updateLogistic">更新物流信息</a>
+            <a class="layui-btn layui-btn-xs" lay-event="orderDetail">订单详情</a>
+        </script>
     </div>
+   
     <div class="layui-footer">
-        强哥户外--户外用品门户网站--联系方式627901633@qq.com
+        购了商城管理界面
     </div>
 </div>
 <script src="./js/admino.js"></script>

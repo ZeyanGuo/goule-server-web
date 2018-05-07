@@ -1,0 +1,71 @@
+.order-info-container{
+	border: 1px solid #e1e1e1;
+	margin: 15px;
+}
+.order-info-item{
+	background: white;
+	
+}
+.order-info-title{
+	padding: 10px;
+	background: #f2f2f2;
+	color: gray;
+	font-size: 16px;
+}
+
+.order-info-value-container p{
+	display: inline-block;
+	margin: 10px;
+}
+.order-info-value-container p:first-of-type{
+	width: 100px;
+}
+.order-info-remark{
+	min-height:100px;
+	border: 1px solid lightgray;
+	width: 400px;
+	padding: 10px;
+	color: gray;
+}
+.order-info-goods-container{
+	margin: 10px;
+	border: 1px solid lightgray;
+}
+.order-info-goods-title{
+	background: #f9f9f9;
+	
+	color: gray;
+}
+.order-info-goods-title p{
+	display: inline-block;
+	padding: 5px;
+}
+.order-info-goods-value{
+	padding: 10px;
+}
+.order-info-goods-value p{
+	display: inline-block;
+	vertical-align: top;
+	padding: 5px;
+	
+	
+}
+.name{
+	width: 330px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.order-goods-img{
+	vertical-align: top;
+	width: 80px;
+	height: 80px;
+}
+.p-middle{
+	line-height: 80px;
+	height: 80px;
+	border-right: 1px solid lightgray;
+}
+.goods-total-price{
+	padding: 10px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购了商城，订单详情</title>
+		<link rel="import" href="admin_header.html">
+		<link rel="stylesheet" href="css/admin.css" />
+		<link rel="stylesheet" href="css/adminOrderDetail.css" />
+		
+		
+	</head>
+	
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div id="header"></div>
+			<div class="layui-body">
+				<div class="order-info-container">
+					<div class = "order-info-item">
+						<p class=" order-info-title">
+							订单概况
+						</p>
+						<div class="order-info-detail-container" id = "orderDetail">
+							
+							
+						</div>
+					</div>
+					<div class = "order-info-item">
+						<p class=" order-info-title">
+							买家信息
+						</p>
+						<div class="order-info-detail-container" id = "userContainer">
+							
+							
+						</div>
+					</div>
+					<div class = "order-info-item" >
+						<p class=" order-info-title">
+							商品信息
+						</p>
+						<div class="goods-container" id = "goodsContainer">
+							
+						</div>
+						
+						<p class="goods-total-price">总金额：<span id = "totalPrice" style="color: red;"></span></p>
+					</div>
+				</div>
+			</div>
+			 <div class="layui-footer">
+	            购了商城管理界面
+	        </div>
+		</div>
+	</body>
+	<script src="./layui/layui.all.js"></script>
+		<script src="js/adminOrderDetail.js"></script>
+</html>
