@@ -262,7 +262,7 @@ function initTool(){
 	    if(obj.event === 'updateLogistic'){
 	        updateLogistic(obj.data.id);
 	    } else if (obj.event === 'orderDetail') {
-	        location.href = "adminOrderDetail.html?id=" + data.id;
+	        window.open("adminOrderDetail.html?id=" + data.id);
 	    }
 	});
 }

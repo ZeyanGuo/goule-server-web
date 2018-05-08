@@ -304,9 +304,9 @@ form.on('switch(status)', function(obj){
 table.on('tool(good)', function(obj){
     var data = obj.data;
     if(obj.event === 'media'){
-        location.href = "admingp.html?type=media&id=" + data.id;
+        window.open("admingp.html?type=media&id=" + data.id);
     } else if (obj.event === 'introPicture') {
-        location.href = "admingp.html?type=introPicture&id=" + data.id;
+        window.open("admingp.html?type=introPicture&id=" + data.id);
     }
 });
 
