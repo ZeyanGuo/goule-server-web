@@ -1,4 +1,4 @@
-var ASKURL = "http://goule.cjyong.com";
+var ASKURL = "http://118.24.11.197:9090";
 //var ASKURL = "http://localhost:8181";
 /*
     class name:getCookie
