@@ -56,9 +56,10 @@ function renderTable(){
 	        ,{field:'stock', title: '库存', sort: true, edit: 'text'}
 	        ,{field:'sales', title: '销量', sort: true}
 	        ,{field:'typeid', title: '类别', templet:function(d){return types[d.typeid].gtname},sort:true}
-	        ,{field:'recommed', title:'推荐', width:85, templet: '#switchTpl', unresize: true,sort:true}
-	        ,{field:'status', title:'在售', width:85, templet: '#switchTp2', unresize: true,sort:true}
-	        ,{fixed: 'right', title:'操作', width:230, templet: '#bar', align: 'center'}
+	        ,{field:'homerecommend', title:'首页推荐', width:95, templet: '#switchTp3', unresize: true}
+	        ,{field:'recommed', title:'精品推荐', width:95, templet: '#switchTpl', unresize: true}
+	        ,{field:'status', title:'在售', width:85, templet: '#switchTp2', unresize: true}
+	        ,{fixed: 'right', title:'操作', width:280, templet: '#bar', align: 'center'}
 	    ]]
 	    ,id: 'goodTable'
 	    ,page: true
@@ -220,6 +221,18 @@ table.on('edit(good)', function(obj){
     var value = obj.value //得到修改后的值
         ,data = obj.data //得到所在行所有键值
         ,field = obj.field; //得到字段
+    if(field == 'price'){
+    		if(!/^[0-9]*\.?[0-9]*$/.test(value)){
+    			layer.msg('更新失败，请输入正确格式的价格');
+    			return;
+    		}
+    }
+    if(field == 'stock'){
+    		if(!/^[0-9]*$/.test(value)){
+    			layer.msg('更新失败，请输入正确格式的库存');
+    			return;
+    		}
+    }
     $.post(ASKURL + "/admin/update",
         {
         		type: 2, 
@@ -229,7 +242,6 @@ table.on('edit(good)', function(obj){
         		xtoken: strUserInfo
         },
         function(data) {
-            console.log(data);
             if (data.code == 1) {
                 layer.msg("更新成功");
             }
@@ -258,6 +270,39 @@ form.on('switch(recommed)', function(obj){
 	        		type: 2, 
 	        		id: id, 
 	        		position: 'recommed', 
+	        		value: value,
+	        		xtoken: strUserInfo
+	        },
+	        function(data) {
+	            if (data.code == 1) {
+	                layer.msg("更新成功");
+	            }
+	        });
+     }
+});
+form.on('switch(homerecommend)', function(obj){
+    //layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+    var value = obj.elem.checked ? 1 : 0,
+    		thumbValue = $(this).attr('thumbValue'),
+    		id = this.value;
+    		
+    		
+     if(thumbValue==''||!thumbValue){
+    		//表示没有缩略图
+    		
+    		layer.msg('不存在简介图，无法推荐，请给商品配简介图');
+    		$(this).prop('checked',false);
+    		form.render('checkbox');
+    }
+    else{
+ 	   	changeStatus();
+    }
+    function changeStatus(){
+	    $.post(ASKURL + "/admin/update",
+	        {
+	        		type: 2, 
+	        		id: id, 
+	        		position: 'homerecommend', 
 	        		value: value,
 	        		xtoken: strUserInfo
 	        },
@@ -307,6 +352,9 @@ table.on('tool(good)', function(obj){
         window.open("admingp.html?type=media&id=" + data.id);
     } else if (obj.event === 'introPicture') {
         window.open("admingp.html?type=introPicture&id=" + data.id);
+    }
+    else if (obj.event === 'property'){
+    		window.open("propertyChange.html?id=" + data.id);
     }
 });
 

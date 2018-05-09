@@ -66,8 +66,8 @@ function addUserDerail(data){
 
 function addGoodItem(obj){
 	
-	var singlePrice = (Number(obj.price) / Number(obj.produce.goodnum)).toFixed(2),
-		price = Number(obj.price).toFixed(2);
+	var singlePrice = (Number(obj.produce.price)/Number(obj.produce.goodnum)).toFixed(2),
+		price = Number(obj.produce.price).toFixed(2);
 	var html =`<div class="order-info-goods-container"  style="display: inline-block;"	>
 								<div class="order-info-goods-title">
 									<p style="width: 440px;">商品名称</p>
@@ -128,10 +128,7 @@ function addOrderDetail(data){
 		default:{}
 	}
 	
-	data.goods.map(function(obj){
-		price += obj.price;	
-	});
-	price = price.toFixed(2);
+	price = Number(data.order.price).toFixed(2);
 	$('#totalPrice').html('¥'+price);
 	if(data.order.cinvoice == 0){
 		cinvoice = '否';

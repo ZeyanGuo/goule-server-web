@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购了商城,属性管理</title>
+    <link rel="import" href="admin_header.html">
+    
+    <link rel= "stylesheet" href="css/admin.css" />
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div id="header"></div>
+    <div class="layui-body">
+    		
+        <div style="padding: 15px;">
+            <div class="demoTable">
+                商品ID：<span id = "uid"></span>
+               
+                <button class="layui-btn" id = "delete-img" data-type="delete" style="margin-left: 10px;">删除所选属性</button>
+                <button class="layui-btn" id = "upload-img" data-type="create">添加属性</button>
+            </div>
+        </div>
+        <table class="layui-hide" id="LAY_table_picture" lay-filter="picture"></table>
+        
+    </div>
+    <div class="layui-footer">
+        购了商城管理界面
+    </div>
+</div>
+<script src="js/propertyChange.js"></script>
+</body>
+</html>

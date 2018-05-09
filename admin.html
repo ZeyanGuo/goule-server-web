@@ -28,9 +28,13 @@
             <script type="text/html" id="switchTp2">
                 <input type="checkbox" name="status" value="{{d.id}}" thumbValue="{{d.thumbnail}}" lay-skin="switch" lay-text="Y|N" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }}>
             </script>
+            <script type="text/html" id="switchTp3">
+                <input type="checkbox" name="homerecommend" value="{{d.id}}" thumbValue="{{d.introduce}}" lay-skin="switch" lay-text="Y|N" lay-filter="homerecommend" {{ d.homerecommend == 1 ? 'checked' : '' }}>
+            </script>
             <script type="text/html" id="bar">
                 <a class="layui-btn layui-btn-xs" lay-event="media">配图与视频设置</a>
                 <a class="layui-btn layui-btn-xs" lay-event="introPicture">简介图片设置</a>
+                <a class="layui-btn layui-btn-xs" lay-event="property">属性设置</a>
             </script>
         </div>
         <div class="layui-footer">
