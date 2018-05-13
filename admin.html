@@ -31,10 +31,19 @@
             <script type="text/html" id="switchTp3">
                 <input type="checkbox" name="homerecommend" value="{{d.id}}" thumbValue="{{d.introduce}}" lay-skin="switch" lay-text="Y|N" lay-filter="homerecommend" {{ d.homerecommend == 1 ? 'checked' : '' }}>
             </script>
+			<script type="text/html" id="switchTp4">
+                <input type="checkbox" name="discount" value="{{d.id}}" thumbValue="{{d.introduce}}" lay-skin="switch" lay-text="Y|N" lay-filter="discount" {{ d.discount == 1 ? 'checked' : '' }}>
+            </script>
+			<script type="text/html" id="switchTp5">
+                <input type="checkbox" name="funsnacks" value="{{d.id}}" thumbValue="{{d.introduce}}" lay-skin="switch" lay-text="Y|N" lay-filter="funsnacks" {{ d.funsnacks == 1 ? 'checked' : '' }}>
+            </script>
+			<script type="text/html" id="switchTp6">
+                <input type="checkbox" name="freshfruit" value="{{d.id}}" thumbValue="{{d.introduce}}" lay-skin="switch" lay-text="Y|N" lay-filter="freshfruit" {{ d.freshfruit == 1 ? 'checked' : '' }}>
+            </script>
             <script type="text/html" id="bar">
-                <a class="layui-btn layui-btn-xs" lay-event="media">配图与视频设置</a>
-                <a class="layui-btn layui-btn-xs" lay-event="introPicture">简介图片设置</a>
-                <a class="layui-btn layui-btn-xs" lay-event="property">属性设置</a>
+                <a class="layui-btn layui-btn-xs" lay-event="media">配图</a>
+                <a class="layui-btn layui-btn-xs" lay-event="introPicture">简图</a>
+                <a class="layui-btn layui-btn-xs" lay-event="property">属性</a>
             </script>
         </div>
         <div class="layui-footer">

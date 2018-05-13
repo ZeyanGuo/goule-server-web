@@ -51,15 +51,19 @@ function renderTable(){
 	    ,cols: [[
 	        {checkbox: true, fixed: true}
 	        ,{field:'id', title: 'ID', sort: true, fixed: true}
-	        ,{field:'name', title: '名称', sort: true, edit: 'text'}
-	        ,{field:'price', title: '价格',  sort: true, edit: 'text'}
-	        ,{field:'stock', title: '库存', sort: true, edit: 'text'}
-	        ,{field:'sales', title: '销量', sort: true}
+	        ,{field:'name', title: '名称', sort: true, edit: 'text', fixed: true}
+	        ,{field:'price', title: '价格',  sort: true, edit: 'text', fixed: true}
+	        ,{field:'stock', title: '库存', sort: true, edit: 'text', fixed: true}
+	        ,{field:'sales', title: '销量', sort: true, fixed: true}
 	        ,{field:'typeid', title: '类别', templet:function(d){return types[d.typeid].gtname},sort:true}
-	        ,{field:'homerecommend', title:'首页推荐', width:95, templet: '#switchTp3', unresize: true}
-	        ,{field:'recommed', title:'精品推荐', width:95, templet: '#switchTpl', unresize: true}
-	        ,{field:'status', title:'在售', width:85, templet: '#switchTp2', unresize: true}
-	        ,{fixed: 'right', title:'操作', width:280, templet: '#bar', align: 'center'}
+	        ,{field:'homerecommend', title:'首推', width:80, templet: '#switchTp3', unresize: true}
+	        ,{field:'recommed', title:'精推', width:80, templet: '#switchTpl', unresize: true}
+			,{field:'funsnacks', title:'趣零', width:80, templet: '#switchTp5', unresize: true}
+			,{field:'freshfruit', title:'新果', width:80, templet: '#switchTp6', unresize: true}
+			,{field:'discount', title:'今折', width:80, templet: '#switchTp4', unresize: true}
+			,{field:'discountrate', title:'折扣', sort: true, edit: 'text', fixed: true}
+	        ,{field:'status', title:'在售', width:80, templet: '#switchTp2', unresize: true}
+	        ,{fixed: 'right', title:'操作', width:150, templet: '#bar', align: 'center'}
 	    ]]
 	    ,id: 'goodTable'
 	    ,page: true
@@ -131,7 +135,7 @@ var active = {
         html += '<div style="margin-bottom: 10px"><p class="p-name">商品单价：</p><div class="layui-inline"><input class="layui-input input-margin-left" placeholder="输入商品单价" type="number" name="price" id="price" autocomplete="off"></div></div>';
         html += '<div style="margin-bottom: 10px"><p class="p-name">商品库存：</p><div class="layui-inline"><input class="layui-input input-margin-left" placeholder="输入商品库存" type="number" name="stock" id="stock" autocomplete="off"></div></div>';
         html += '<div style="margin-bottom: 10px"><p class="p-name">商品类别：</p><div class="layui-inline" style="padding-left:20px;">'+makeSelectTypes()+'</div></div>';
-        html += '<button class="layui-btn" style="margin:20px 0 0 30px;width:270px" id="csub" data-type="reload">发布商品</button>';
+        html += '<button class="layui-btn" style="margin:20px 0 0 30px;width:280px" id="csub" data-type="reload">发布商品</button>';
         html += '</div>';
         layer.open({
             type: 1,
@@ -140,37 +144,6 @@ var active = {
             content: html
         });
         form.render();
-        //添加上传头像实现
-//      var uploadInst = upload.render({
-//          elem: '#upimage'
-//          ,url: ASKURL + "/admin/upimage"
-//          ,before: function(obj){
-//              obj.preview(function(index, file, result){
-//                  $('#cimage').attr('src', result);
-//              });
-//          }
-//          ,size: 1024
-//          ,data: {
-//              goodid : "-1"
-//          }
-//          ,done: function(res){
-//              if(res.code != 0){
-//                  return layer.msg(res.msg);
-//              }
-//              imgurl = res.data;
-//              $("#upimage").attr("disabled", true);
-//              $("#upimage").css({'background-color':'gray'});
-//              layer.msg("上传成功");
-//          }
-//          ,error: function(){
-//              //上传失败，实现重传
-//              var retry = $('#retry');
-//              retry.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini reload">重试</a>');
-//              retry.find('.reload').on('click', function(){
-//                  uploadInst.upload();
-//              });
-//          }
-//      });
         $("#csub").on('click', function(){
         		var name = $('#name').val(),
         			price = $('#price').val(),
@@ -230,6 +203,12 @@ table.on('edit(good)', function(obj){
     if(field == 'stock'){
     		if(!/^[0-9]*$/.test(value)){
     			layer.msg('更新失败，请输入正确格式的库存');
+    			return;
+    		}
+    }
+	if(field == 'discountrate'){
+    		if(!/^[0-9]*$/.test(value)){
+    			layer.msg('更新失败，请输入正确格式的折扣率(百分比80代表八折)');
     			return;
     		}
     }
@@ -313,7 +292,7 @@ form.on('switch(homerecommend)', function(obj){
 	        });
      }
 });
-//监听折扣操作
+//监听上架操作
 form.on('switch(status)', function(obj){
     //layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
     var value = obj.elem.checked ? 1 : 0,
@@ -344,6 +323,60 @@ form.on('switch(status)', function(obj){
 	            }
 	        });
      }
+});
+//监听折扣操作
+form.on('switch(discount)', function(obj){
+	var value = obj.elem.checked ? 1 : 0,
+		id = this.value;
+	$.post(ASKURL + "/admin/update",
+		{
+				type: 2, 
+				id: id, 
+				position: 'discount', 
+				value: value,
+				xtoken:strUserInfo
+		},
+		function(data) {
+			if (data.code == 1) {
+				layer.msg("更新成功");
+			}
+		});
+});
+//监听新鲜果蔬操作
+form.on('switch(funsnacks)', function(obj){
+    var value = obj.elem.checked ? 1 : 0,
+    		id = this.value;
+	$.post(ASKURL + "/admin/update",
+		{
+				type: 2, 
+				id: id, 
+				position: 'funsnacks', 
+				value: value,
+				xtoken:strUserInfo
+		},
+		function(data) {
+			if (data.code == 1) {
+				layer.msg("更新成功");
+			}
+		});
+});
+//监听趣味零食操作
+form.on('switch(freshfruit)', function(obj){
+    var value = obj.elem.checked ? 1 : 0,
+    		id = this.value;
+	$.post(ASKURL + "/admin/update",
+		{
+				type: 2, 
+				id: id, 
+				position: 'freshfruit', 
+				value: value,
+				xtoken:strUserInfo
+		},
+		function(data) {
+			if (data.code == 1) {
+				layer.msg("更新成功");
+			}
+		});
 });
 //监听工具条
 table.on('tool(good)', function(obj){
