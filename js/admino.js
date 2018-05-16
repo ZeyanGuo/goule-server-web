@@ -133,7 +133,8 @@ function renderTable(data,count){
 	    ,cellMinWidth: 40
 	    ,limit:limit
 	    ,cols: [[
-	        {field:'id', title: 'ID', sort: true, fixed: true}
+	    		{checkbox: true, fixed: true}
+	      	,{field:'id', title: 'ID', sort: true, fixed: true}
 	         ,{field:'odStatus',title:'订单状态',sort:true}
 	         ,{field:'postid',title:'快递编号',edit:true}
 	         ,{field:'postType',title:'快递商家',edit:true}
@@ -300,11 +301,44 @@ function updateLogistic(id){
 	})
 }
 
+function initCancle(){
+	$('#delete').on('click',function(){
+		var checkStatus = table.checkStatus('orderTable')
+            ,data = checkStatus.data;
+        var ids= "";
+        
+        if (data.length == 0) {
+            layer.msg("请选择需要删除的数据");
+            return;
+        }
+        for(var i = 0; i < data.length; i++) {
+            if (i != 0) {
+                ids += "a";
+            }
+            ids += data[i].id;
+        }
+        var url = ASKURL + "/admin/delete" + "?type=3&ids=" + ids + '&xtoken='+strUserInfo;
+        //确定删除
+        layer.confirm('你确定取消' + data.length + '个订单吗?', function(index){
+            $.get(url, function(data){
+                if (data.code == 1) {
+                    //表单刷新
+                    layer.msg('取消订单成功');
+                    getAjaxData();
+                }
+            });
+            layer.close(index);
+        }, function(){
+        });
+	})
+}
+
 $(function(){
 	initPage();
 	initSelectChange();
 	initBtnClick();
 	initFormEdit();
 	initTool();
+	initCancle();
 })
 
