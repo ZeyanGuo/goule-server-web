@@ -62,7 +62,7 @@ function renderTable(){
 			,{field:'discount', title:'今折', width:80, templet: '#switchTp4', unresize: true}
 			,{field:'discountrate', title:'折扣', sort: true, edit: 'text', fixed: true}
 	        ,{field:'status', title:'在售', width:80, templet: '#switchTp2', unresize: true}
-	        ,{fixed: 'right', title:'操作', width:150, templet: '#bar', align: 'center'}
+	        ,{fixed: 'right', title:'操作', width:150, toolbar: '#bar', align: 'center'}
 	    ]]
 	    ,id: 'goodTable'
 	    ,page: true

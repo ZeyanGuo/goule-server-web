@@ -139,7 +139,7 @@ function renderTable(data,count){
 	         ,{field:'postid',title:'快递编号',edit:true}
 	         ,{field:'postType',title:'快递商家',edit:true}
 	        ,{field:'createTime', title: '创建时间',sort:true}
-	        ,{field:'operation',title:'订单操作',templet:'#bar'}
+	        ,{field:'operation',title:'订单操作',toolbar:'#bar'}
 	    ]]
 	    ,id: 'orderTable'
 	    ,data: dataRender
