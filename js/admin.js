@@ -54,7 +54,6 @@ function renderTable(){
 	        ,{field:'name', title: '名称', sort: true, edit: 'text', fixed: true}
 	        ,{field:'price', title: '价格',  sort: true, edit: 'text', fixed: true}
 	        ,{field:'stock', title: '库存', sort: true, edit: 'text', fixed: true}
-	        ,{field:'sales', title: '销量', sort: true, fixed: true}
 	        ,{field:'typeid', title: '类别', templet:function(d){return types[d.typeid].gtname},sort:true}
 	        ,{field:'homerecommend', title:'首推', width:80, templet: '#switchTp3', unresize: true}
 	        ,{field:'recommed', title:'精推', width:80, templet: '#switchTpl', unresize: true}
