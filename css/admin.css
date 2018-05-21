@@ -6,3 +6,7 @@
 .input-margin-left{
 	margin-left: 20px;
 }
+.layui-form-select dl{
+	height: 80px !important;
+    overflow: scroll !important;
+}
