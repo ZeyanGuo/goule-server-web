@@ -37,7 +37,7 @@ upload.render({
 //          $('#cimage').attr('src', result);
 //      });
     }
-    ,size: 1024
+    ,size: 204800
     ,data: {
         goodid : gid,
         xtoken:strUserInfo

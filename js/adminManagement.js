@@ -25,6 +25,7 @@ table.render({
        	return d.passwd;
        }, sort: true }
         ,{field:'phone', title: '客服电话', sort: true, edit: 'text' }
+        ,{field:'postprice',title:'运费(满60)',edit:'text'}
     ]]
     ,id: 'userTable'
     ,page: false
